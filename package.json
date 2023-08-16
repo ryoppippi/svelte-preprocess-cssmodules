@@ -48,13 +48,13 @@
 		"example": "example"
 	},
 	"peerDependencies": {
-		"svelte": "^3.20.0",
-		"typescript": "^4.0.0"
+		"svelte": "^4.2.0",
+		"typescript": "^5.1.6"
 	},
 	"dependencies": {
 		"acorn": "^8.5.0",
 		"big.js": "^6.1.1",
-		"estree-walker": "^3.0.0",
+		"estree-walker": "^3.0.3",
 		"magic-string": "^0.25.7"
 	},
 	"devDependencies": {
@@ -65,7 +65,7 @@
 		"eslint": "^9.8.0",
 		"eslint-plugin-format": "^0.1.2",
 		"jest": "^26.0.1",
-		"svelte": "^3.22.3",
-		"typescript": "^4.0.3"
+		"svelte": "^4.2.0",
+		"typescript": "^5.1.6"
 	}
 }

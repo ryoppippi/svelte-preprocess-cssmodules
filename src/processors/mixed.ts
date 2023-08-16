@@ -31,8 +31,8 @@ const updateSelectorBoundaries = (
  * @param processor The CSS Module Processor
  */
 const parser = (processor: Processor): void => {
-  const ast = processor.ast as unknown as TemplateNode;
-  walk(ast, {
+  const ast = (processor.ast as unknown) as TemplateNode;
+  walk(ast.expression, {
     enter(baseNode) {
       const node = baseNode as TemplateNode;
       if (node.type === 'Script' || node.type === 'Fragment') {
@@ -97,6 +97,7 @@ const parser = (processor: Processor): void => {
       processor.parseBoundVariables(node);
       processor.parsePseudoLocalSelectors(node);
       processor.storeAnimationProperties(node);
+      console.log(node);
 
       if (node.type === 'ClassSelector') {
         const generatedClassName = processor.createModuleClassname(node.name);
