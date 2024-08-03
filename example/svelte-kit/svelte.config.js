@@ -4,13 +4,13 @@ import cssModules from '../../dist/index.mjs';
 const config = {
 	kit: {
 		// hydrate the <div id="svelte"> element in src/app.html
-		target: '#svelte'
+		target: '#svelte',
 	},
-  preprocess: [
-    cssModules({
-      includePaths: ['./']
-    }),
-  ]
+	preprocess: [
+		cssModules({
+			includePaths: ['./'],
+		}),
+	],
 };
 
 export default config;
