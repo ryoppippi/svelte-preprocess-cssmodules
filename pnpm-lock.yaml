@@ -65,7 +65,7 @@ importers:
         specifier: ^17.0.0
         version: 17.1.0(rollup@2.79.1)
       '@rollup/plugin-node-resolve':
-        specifier: ^11.0.0
+        specifier: ^11.2.1
         version: 11.2.1(rollup@2.79.1)
       '@rollup/plugin-typescript':
         specifier: ^8.0.0
@@ -4580,7 +4580,11 @@ snapshots:
       jest-runner: 26.6.3
       jest-runtime: 26.6.3
     transitivePeerDependencies:
+      - bufferutil
+      - canvas
       - supports-color
+      - ts-node
+      - utf-8-validate
 
   '@jest/transform@26.6.2':
     dependencies:
