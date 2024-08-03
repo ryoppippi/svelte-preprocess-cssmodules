@@ -1,34 +1,33 @@
-/* eslint-disable no-multi-assign */
 import { parse, preprocess } from 'svelte/compiler';
 import type { Ast } from 'svelte/types/compiler/interfaces.d';
 import type {
-  PreprocessorGroup,
-  MarkupPreprocessor,
+	MarkupPreprocessor,
+	PreprocessorGroup,
 } from 'svelte/types/compiler/preprocess/index.d';
 import type { PluginOptions } from './types';
-import { nativeProcessor, mixedProcessor, scopedProcessor } from './processors';
+import { mixedProcessor, nativeProcessor, scopedProcessor } from './processors';
 import {
-  getLocalIdent,
-  isFileIncluded,
-  hasModuleImports,
-  hasModuleAttribute,
-  normalizeIncludePaths,
+	getLocalIdent,
+	hasModuleAttribute,
+	hasModuleImports,
+	isFileIncluded,
+	normalizeIncludePaths,
 } from './lib';
 
-const defaultOptions = (): PluginOptions => {
-  return {
-    cssVariableHash: '[hash:base64:6]',
-    getLocalIdent,
-    hashSeeder: ['style', 'filepath', 'classname'],
-    includeAttributes: [],
-    includePaths: [],
-    localIdentName: '[local]-[hash:base64:6]',
-    mode: 'native',
-    parseExternalStylesheet: false,
-    parseStyleTag: true,
-    useAsDefaultScoping: false,
-  };
-};
+function defaultOptions(): PluginOptions {
+	return {
+		cssVariableHash: '[hash:base64:6]',
+		getLocalIdent,
+		hashSeeder: ['style', 'filepath', 'classname'],
+		includeAttributes: [],
+		includePaths: [],
+		localIdentName: '[local]-[hash:base64:6]',
+		mode: 'native',
+		parseExternalStylesheet: false,
+		parseStyleTag: true,
+		useAsDefaultScoping: false,
+	};
+}
 
 let pluginOptions: PluginOptions;
 
@@ -38,68 +37,68 @@ let pluginOptions: PluginOptions;
  * @returns the preprocessor markup
  */
 const markup: MarkupPreprocessor = async ({ content, filename }) => {
-  const isIncluded = isFileIncluded(pluginOptions.includePaths, filename);
+	const isIncluded = isFileIncluded(pluginOptions.includePaths, filename);
 
-  if (!isIncluded || (!pluginOptions.parseStyleTag && !pluginOptions.parseExternalStylesheet)) {
-    return { code: content };
-  }
-  let ast: Ast;
-  try {
-    ast = parse(content, { filename });
-  } catch (err) {
-    throw new Error(
-      `${err}\n\nThe svelte component failed to be parsed. Make sure cssModules is running after all other preprocessors by wrapping them with "cssModulesPreprocess().after()"`
-    );
-  }
+	if (!isIncluded || (!pluginOptions.parseStyleTag && !pluginOptions.parseExternalStylesheet)) {
+		return { code: content };
+	}
+	let ast: Ast;
+	try {
+		ast = parse(content, { filename });
+	}
+	catch (err) {
+		throw new Error(
+      `${err}\n\nThe svelte component failed to be parsed. Make sure cssModules is running after all other preprocessors by wrapping them with "cssModulesPreprocess().after()"`,
+		);
+	}
 
-  if (
-    !pluginOptions.useAsDefaultScoping &&
-    !hasModuleAttribute(ast) &&
-    !hasModuleImports(content)
-  ) {
-    return { code: content };
-  }
+	if (
+		!pluginOptions.useAsDefaultScoping
+		&& !hasModuleAttribute(ast)
+		&& !hasModuleImports(content)
+	) {
+		return { code: content };
+	}
 
-  // eslint-disable-next-line prefer-const
-  let { mode, hashSeeder } = pluginOptions;
+	let { mode, hashSeeder } = pluginOptions;
 
-  if (pluginOptions.parseStyleTag && hasModuleAttribute(ast)) {
-    const moduleAttribute = ast.css.attributes.find((item) => item.name === 'module');
-    mode = moduleAttribute.value !== true ? moduleAttribute.value[0].data : mode;
-  }
+	if (pluginOptions.parseStyleTag && hasModuleAttribute(ast)) {
+		const moduleAttribute = ast.css.attributes.find(item => item.name === 'module');
+		mode = moduleAttribute.value !== true ? moduleAttribute.value[0].data : mode;
+	}
 
-  if (!['native', 'mixed', 'scoped'].includes(mode)) {
-    throw new Error(`Module only accepts 'native', 'mixed' or 'scoped': '${mode}' was passed.`);
-  }
+	if (!['native', 'mixed', 'scoped'].includes(mode)) {
+		throw new Error(`Module only accepts 'native', 'mixed' or 'scoped': '${mode}' was passed.`);
+	}
 
-  hashSeeder.forEach((value) => {
-    if (!['style', 'filepath', 'classname'].includes(value)) {
-      throw new Error(
-        `The hash seeder only accepts the keys 'style', 'filepath' and 'classname': '${value}' was passed.`
-      );
-    }
-  });
+	hashSeeder.forEach((value) => {
+		if (!['style', 'filepath', 'classname'].includes(value)) {
+			throw new Error(
+        `The hash seeder only accepts the keys 'style', 'filepath' and 'classname': '${value}' was passed.`,
+			);
+		}
+	});
 
-  let parsedContent: string;
+	let parsedContent: string;
 
-  switch (mode) {
-    case 'scoped': {
-      parsedContent = await scopedProcessor(ast, content, filename, pluginOptions);
-      break;
-    }
-    case 'mixed': {
-      parsedContent = await mixedProcessor(ast, content, filename, pluginOptions);
-      break;
-    }
-    default: {
-      parsedContent = await nativeProcessor(ast, content, filename, pluginOptions);
-      break;
-    }
-  }
+	switch (mode) {
+		case 'scoped': {
+			parsedContent = await scopedProcessor(ast, content, filename, pluginOptions);
+			break;
+		}
+		case 'mixed': {
+			parsedContent = await mixedProcessor(ast, content, filename, pluginOptions);
+			break;
+		}
+		default: {
+			parsedContent = await nativeProcessor(ast, content, filename, pluginOptions);
+			break;
+		}
+	}
 
-  return {
-    code: parsedContent,
-  };
+	return {
+		code: parsedContent,
+	};
 };
 
 /**
@@ -107,37 +106,37 @@ const markup: MarkupPreprocessor = async ({ content, filename }) => {
  * @param options
  * @returns the css modules preprocessors
  */
-const cssModulesPreprocessor = (options: Partial<PluginOptions>): PreprocessorGroup => {
-  pluginOptions = {
-    ...defaultOptions(),
-    ...options,
-  };
+function cssModulesPreprocessor(options: Partial<PluginOptions>): PreprocessorGroup {
+	pluginOptions = {
+		...defaultOptions(),
+		...options,
+	};
 
-  if (pluginOptions.includePaths) {
-    pluginOptions.includePaths = normalizeIncludePaths(pluginOptions.includePaths);
-  }
+	if (pluginOptions.includePaths) {
+		pluginOptions.includePaths = normalizeIncludePaths(pluginOptions.includePaths);
+	}
 
-  return {
-    markup,
-  };
-};
+	return {
+		markup,
+	};
+}
 
 /**
  * Create a group of preprocessors which will be processed in a linear order
  * @param preprocessors list of preprocessors
  * @returns group of `markup` preprocessors
  */
-const linearPreprocessor = (preprocessors: PreprocessorGroup[]): PreprocessorGroup[] => {
-  return preprocessors.map((p) => {
-    return !p.script && !p.style
-      ? p
-      : {
-          async markup({ content, filename }) {
-            return preprocess(content, p, { filename });
-          },
-        };
-  });
-};
+function linearPreprocessor(preprocessors: PreprocessorGroup[]): PreprocessorGroup[] {
+	return preprocessors.map((p) => {
+		return !p.script && !p.style
+			? p
+			: {
+					async markup({ content, filename }) {
+						return preprocess(content, p, { filename });
+					},
+				};
+	});
+}
 
 // export default cssModulesPreprocessor;
 export default exports = module.exports = cssModulesPreprocessor;

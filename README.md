@@ -39,7 +39,9 @@ Add the `module` attribute to `<style>`
 
 ```html
 <style module>
-  .red { color: red; }
+	.red {
+		color: red;
+	}
 </style>
 
 <p class="red">My red text</p>
@@ -49,7 +51,9 @@ The component will be compiled to
 
 ```html
 <style>
-  .red-30_1IC { color: red; }
+	.red-30_1IC {
+		color: red;
+	}
 </style>
 
 <p class="red-30_1IC">My red text</p>
@@ -67,18 +71,27 @@ The default svelte scoping appends every css selectors with a unique class to on
 <p class="red">lorem ipsum tut moue</p>
 
 <style module>
-  p { font-size: 14px; }
-  .red { color: red; }
+	p {
+		font-size: 14px;
+	}
+	.red {
+		color: red;
+	}
 </style>
 ```
+
 ```html
 <!-- Component B -->
 <p class="text">lorem ipsum tut moue</p>
 <p class="text red">lorem ipsum tut moue</p>
 
 <style module>
-  .text { font-size: 14px; }
-  .red { color: red; }
+	.text {
+		font-size: 14px;
+	}
+	.red {
+		color: red;
+	}
 </style>
 ```
 
@@ -90,8 +103,12 @@ _transformed to_
 <p class="red-123qwe">lorem ipsum tut moue</p>
 
 <style module>
-  p { font-size: 14px; } /* global rule */
-  .red-123qwe { color: red; }
+	p {
+		font-size: 14px;
+	} /* global rule */
+	.red-123qwe {
+		color: red;
+	}
 </style>
 ```
 
@@ -100,9 +117,14 @@ _transformed to_
 <p class="text-456rty">lorem ipsum tut moue</p>
 <p class="text-456rty red-123qwe">lorem ipsum tut moue</p>
 
-<style> /* all scoped to component */
-  .text-456rty { font-size: 14px; }
-  .red-123qwe { color: red; }
+<style>
+	/* all scoped to component */
+	.text-456rty {
+		font-size: 14px;
+	}
+	.red-123qwe {
+		color: red;
+	}
 </style>
 ```
 
@@ -112,15 +134,17 @@ Toggle a class on an element.
 
 ```html
 <script>
-  let route = 'home';
-  $: isActive = route === 'home';
+	let route = 'home';
+	$: isActive = route === 'home';
 </script>
 
 <style module>
-  .active { font-weight: bold; }
+	.active {
+		font-weight: bold;
+	}
 </style>
 
-<a class:active={isActive} href="/">Home</a>
+<a class:active="{isActive}" href="/">Home</a>
 <!-- or -->
 <a class="{isActive ? 'active' : ''}" href="/">Home</a>
 ```
@@ -129,7 +153,9 @@ _generating_
 
 ```html
 <style>
-  .active-2jIMhI { font-weight: bold; }
+	.active-2jIMhI {
+		font-weight: bold;
+	}
 </style>
 
 <a class="active-2jIMhI" href="/">Home</a>
@@ -139,12 +165,14 @@ _generating_
 
 ```html
 <script>
-  let route = 'home';
-  $: active = route === 'home';
+	let route = 'home';
+	$: active = route === 'home';
 </script>
 
 <style module>
-  .active { font-weight: bold; }
+	.active {
+		font-weight: bold;
+	}
 </style>
 
 <a class:active href="/">Home</a>
@@ -154,7 +182,9 @@ _generating_
 
 ```html
 <style>
-  .active-2jIMhI { font-weight: bold; }
+	.active-2jIMhI {
+		font-weight: bold;
+	}
 </style>
 
 <a class="active-2jIMhI" href="/">Home</a>
@@ -170,23 +200,30 @@ Force a selector to be scoped within its component to prevent style inheritance 
 <!-- Parent Component -->
 
 <style module>
-  .main em { color: grey; }
-  .main :local(strong) { font-weight: 900; }
+	.main em {
+		color: grey;
+	}
+	.main :local(strong) {
+		font-weight: 900;
+	}
 </style>
 
 <div class="main">
-  <p>My <em>main</em> lorem <strong>ipsum tuye</strong></p>
-  <ChildComponent />
+	<p>My <em>main</em> lorem <strong>ipsum tuye</strong></p>
+	<ChildComponent />
 </div>
 ```
+
 ```html
 <!-- Child Component-->
 
 <style module>
-  /** Rule to override parent style **/
-  .child em { color: black; }
+	/** Rule to override parent style **/
+	.child em {
+		color: black;
+	}
 
-  /** 
+	/**
    * Unnecessary rule because of the use of :local()
    .child strong { font-weight: 700 }
    */
@@ -195,65 +232,76 @@ Force a selector to be scoped within its component to prevent style inheritance 
 <p class="child">My <em>secondary</em> lorem <strong>ipsum tuye</strong></p>
 ```
 
-*generating*
+_generating_
 
 ```html
 <!-- Parent Component-->
 
 <style>
-  .main-Yu78Wr em { color: grey; }
-  .main-Yu78Wr strong.svelte-ery8ts { font-weight: 900; }
+	.main-Yu78Wr em {
+		color: grey;
+	}
+	.main-Yu78Wr strong.svelte-ery8ts {
+		font-weight: 900;
+	}
 </style>
 
 <div class="main-Yu78Wr">
-  <p>My <em>main</em> lorem <strong class="svelte-ery8ts">ipsum tuye</strong></p>
-  <ChildComponent />
+	<p>
+		My <em>main</em> lorem <strong class="svelte-ery8ts">ipsum tuye</strong>
+	</p>
+	<ChildComponent />
 </div>
 ```
+
 ```html
 <!-- Child Component-->
 
 <style>
-  .child-uhRt2j em { color: black; }
+	.child-uhRt2j em {
+		color: black;
+	}
 </style>
 
-<p class="child-uhRt2j">My <em>secondary</em> lorem <strong>ipsum tuye</strong></p>
+<p class="child-uhRt2j">
+	My <em>secondary</em> lorem <strong>ipsum tuye</strong>
+</p>
 ```
 
 When used with a class, `:local()` cssModules is replaced by the svelte scoping system. This could be useful when targetting global classnames.
 
 ```html
 <style module>
-  .actions {
-    padding: 10px;
-  }
-  /* target a css framework classname without replacing it*/
-  :local(.btn-primary) {
-    margin-right: 10px;
-  }
+	.actions {
+		padding: 10px;
+	}
+	/* target a css framework classname without replacing it*/
+	:local(.btn-primary) {
+		margin-right: 10px;
+	}
 </style>
 
 <div class="actions">
-  <button class="btn btn-primary">Ok</button>
-  <button class="btn btn-default">Cancel</button>
+	<button class="btn btn-primary">Ok</button>
+	<button class="btn btn-default">Cancel</button>
 </div>
 ```
 
-*generating*
+_generating_
 
 ```html
 <style>
-  .actions-7Fhti9 {
-    padding: 10px;
-  }
-  .btn-primary.svelte-saq8ts {
-    margin-right: 10px;
-  }
+	.actions-7Fhti9 {
+		padding: 10px;
+	}
+	.btn-primary.svelte-saq8ts {
+		margin-right: 10px;
+	}
 </style>
 
 <div class="actions-7Fhti9">
-  <button class="btn btn-primary svelte-saq8ts">Ok</button>
-  <button class="btn btn-default">Cancel</button>
+	<button class="btn btn-primary svelte-saq8ts">Ok</button>
+	<button class="btn btn-default">Cancel</button>
 </div>
 ```
 
@@ -263,17 +311,17 @@ Link the value of a CSS property to a dynamic variable by using `bind()`.
 
 ```html
 <script>
-  let color = 'red';
+	let color = 'red';
 </script>
 
 <p class="text">My lorem ipsum text</p>
 
 <style module>
-  .text {
-    font-size: 18px;
-    font-weight: bold;
-    color: bind(color);
-  }
+	.text {
+		font-size: 18px;
+		font-weight: bold;
+		color: bind(color);
+	}
 </style>
 ```
 
@@ -281,19 +329,17 @@ A scoped css variable, binding the declared statement, will be created on the co
 
 ```html
 <script>
-  let color = 'red';
+	let color = 'red';
 </script>
 
-<p class="text-t56rwy" style="--color-eh7sp:{color}">
-  My lorem ipsum text
-</p>
+<p class="text-t56rwy" style="--color-eh7sp:{color}">My lorem ipsum text</p>
 
 <style>
-  .text-t56rwy {
-    font-size: 18px;
-    font-weight: bold;
-    color: var(--color-eh7sp);
-  }
+	.text-t56rwy {
+		font-size: 18px;
+		font-weight: bold;
+		color: var(--color-eh7sp);
+	}
 </style>
 ```
 
@@ -301,24 +347,24 @@ An object property can also be targetted and must be wrapped with quotes.
 
 ```html
 <script>
-  const style = {
-    opacity: 0;
-  };
+	const style = {
+	  opacity: 0;
+	};
 </script>
 
 <div class="content">
-  <h1>Heading</h1>
-  <p class="text">My lorem ipsum text</p>
+	<h1>Heading</h1>
+	<p class="text">My lorem ipsum text</p>
 </div>
 
 <style module>
-  .content {
-    padding: 10px 20px;
-    background-color: #fff;
-  }
-  .text {
-    opacity: bind('style.opacity');
-  }
+	.content {
+		padding: 10px 20px;
+		background-color: #fff;
+	}
+	.text {
+		opacity: bind('style.opacity');
+	}
 </style>
 ```
 
@@ -326,24 +372,24 @@ _generating_
 
 ```html
 <script>
-  const style = {
-    opacity: 0;
-  };
+	const style = {
+	  opacity: 0;
+	};
 </script>
 
 <div class="content-dhye8T" style="--opacity-r1gf51:{style.opacity}">
-  <h1>Heading</h1>
-  <p class="text-iTsx5A">My lorem ipsum text</p>
+	<h1>Heading</h1>
+	<p class="text-iTsx5A">My lorem ipsum text</p>
 </div>
 
 <style>
-  .content-dhye8T {
-    padding: 10px 20px;
-    background-color: #fff;
-  }
-  .text-iTsx5A {
-    opacity: var(--opacity-r1gf51);
-  }
+	.content-dhye8T {
+		padding: 10px 20px;
+		background-color: #fff;
+	}
+	.text-iTsx5A {
+		opacity: var(--opacity-r1gf51);
+	}
 </style>
 ```
 
@@ -354,19 +400,19 @@ CSS Modules allows you to pass a scoped classname to a child component giving th
 ```html
 <!-- Child Component Button.svelte -->
 <script>
-  let className;
-  export { className as class };
+	let className;
+	export { className as class };
 </script>
 
 <button class="btn {className}">
-  <slot />
+	<slot />
 </button>
 
 <style module>
-  .btn {
-    background: red;
-    color: white;
-  }
+	.btn {
+		background: red;
+		color: white;
+	}
 </style>
 ```
 
@@ -374,24 +420,24 @@ CSS Modules allows you to pass a scoped classname to a child component giving th
 <!-- Parent Component -->
 
 <script>
-  import Button from './Button.svelte';
+	import Button from './Button.svelte';
 </script>
 
 <div class="wrapper">
-  <h1>Welcome</h1>
-  <p>Lorem ipsum tut ewou tu po</p>
-  <Button class="btn">Start</Button>
+	<h1>Welcome</h1>
+	<p>Lorem ipsum tut ewou tu po</p>
+	<button class="btn">Start</button>
 </div>
 
 <style module>
-  .wrapper {
-    margin: 0 auto;
-    padding: 16px;
-    max-width: 400px;
-  }
-  .btn {
-    margin-top: 30px;
-  }
+	.wrapper {
+		margin: 0 auto;
+		padding: 16px;
+		max-width: 400px;
+	}
+	.btn {
+		margin-top: 30px;
+	}
 </style>
 ```
 
@@ -399,27 +445,26 @@ _generating_
 
 ```html
 <div class="wrapper-tyaW3">
-  <h1>Welcome</h1>
-  <p>Lorem ipsum tut ewou tu po</p>
-  <button class="btn-dtg87W btn-rtY6ad">Start</button>
+	<h1>Welcome</h1>
+	<p>Lorem ipsum tut ewou tu po</p>
+	<button class="btn-dtg87W btn-rtY6ad">Start</button>
 </div>
 
 <style>
-  .wrapper-tyaW3 {
-    margin: 0 auto;
-    padding: 16px;
-    max-width: 400px;
-  }
-  .btn-dtg87W {
-    margin-top: 30px;
-  }
-  .btn-rtY6ad {
-    background: red;
-    color: white;
-  }
+	.wrapper-tyaW3 {
+		margin: 0 auto;
+		padding: 16px;
+		max-width: 400px;
+	}
+	.btn-dtg87W {
+		margin-top: 30px;
+	}
+	.btn-rtY6ad {
+		background: red;
+		color: white;
+	}
 </style>
 ```
-
 
 ## Import styles from an external stylesheet
 
@@ -432,25 +477,34 @@ Alternatively, styles can be created into an external file and imported onto a s
 
 ```css
 /** style.module.css **/
-.red { color: red; }
-.blue { color: blue; }
+.red {
+	color: red;
+}
+.blue {
+	color: blue;
+}
 ```
+
 ```html
 <!-- Svelte component -->
 <script>
-  import style from './style.module.css';
+	import style from './style.module.css';
 </script>
 
-<p class={style.red}>My red text</p>
-<p class={style.blue}>My blue text</p>
+<p class="{style.red}">My red text</p>
+<p class="{style.blue}">My blue text</p>
 ```
 
-*generating*
+_generating_
 
 ```html
 <style>
-  .red-en-6pb { color: red; }
-  .blue-oVk-n1 { color: blue; }
+	.red-en-6pb {
+		color: red;
+	}
+	.blue-oVk-n1 {
+		color: blue;
+	}
 </style>
 
 <p class="red-en-6pb">My red text</p>
@@ -461,36 +515,53 @@ Alternatively, styles can be created into an external file and imported onto a s
 
 ```css
 /** style.module.css **/
-section { padding: 10px; }
-.red { color: red; }
-.blue { color: blue; }
-.bold { font-weight: bold; }
+section {
+	padding: 10px;
+}
+.red {
+	color: red;
+}
+.blue {
+	color: blue;
+}
+.bold {
+	font-weight: bold;
+}
 ```
+
 ```html
 <!-- Svelte component -->
 <script>
-  import { red, blue } from './style.module.css';
+	import { red, blue } from './style.module.css';
 </script>
 
 <section>
-  <p class={red}>My <span class="bold">red</span> text</p>
-  <p class="{blue} bold">My blue text</p>
+	<p class="{red}">My <span class="bold">red</span> text</p>
+	<p class="{blue} bold">My blue text</p>
 </section>
 ```
 
-*generating*
+_generating_
 
 ```html
 <style>
-  section { padding: 10px; }
-  .red-1sPexk { color: red; }
-  .blue-oVkn13 { color: blue; }
-  .bold-18te3n { font-weight: bold; }
+	section {
+		padding: 10px;
+	}
+	.red-1sPexk {
+		color: red;
+	}
+	.blue-oVkn13 {
+		color: blue;
+	}
+	.bold-18te3n {
+		font-weight: bold;
+	}
 </style>
 
 <section>
-  <p class="red-1sPexk">My <span class="bold-18te3n">red</span> text</p>
-  <p class="blue-oVkn13 bold-18te3n">My blue text</p>
+	<p class="red-1sPexk">My <span class="bold-18te3n">red</span> text</p>
+	<p class="blue-oVkn13 bold-18te3n">My blue text</p>
 </section>
 ```
 
@@ -500,39 +571,44 @@ The kebab-case class names are being transformed to a camelCase version to facil
 
 ```css
 /** style.module.css **/
-.success { color: green; }
+.success {
+	color: green;
+}
 .error-message {
-  color: red;
-  text-decoration: line-through;
+	color: red;
+	text-decoration: line-through;
 }
 ```
+
 ```html
 <script>
-  import css from './style.module.css';
+	import css from './style.module.css';
 </script>
 
-<p class={css.success}>My success text</p>
+<p class="{css.success}">My success text</p>
 <p class="{css.errorMessage}">My error message</p>
 
 <!-- OR -->
 
 <script>
-  import { success, errorMessage } from './style.module.css';
+	import { success, errorMessage } from './style.module.css';
 </script>
 
-<p class={success}>My success message</p>
-<p class={errorMessage}>My error message</p>
+<p class="{success}">My success message</p>
+<p class="{errorMessage}">My error message</p>
 ```
 
-*generating*
+_generating_
 
 ```html
 <style>
-  .success-3BIYsG { color: green; }
-  .error-message-16LSOn {
-    color: red;
-    text-decoration: line-through;
-  }
+	.success-3BIYsG {
+		color: green;
+	}
+	.error-message-16LSOn {
+		color: red;
+		text-decoration: line-through;
+	}
 </style>
 
 <p class="success-3BIYsG">My success messge</p>
@@ -545,24 +621,33 @@ If a css file is being imported without a name, CSS Modules will still apply to 
 
 ```css
 /** style.module.css **/
-p { font-size: 18px; }
-.success { color: green; }
+p {
+	font-size: 18px;
+}
+.success {
+	color: green;
+}
 ```
+
 ```html
 <script>
-  import './style.module.css'
+	import './style.module.css';
 </script>
 
 <p class="success">My success message</p>
 <p>My another message</p>
 ```
 
-*generating*
+_generating_
 
 ```html
 <style>
-  p { font-size: 18px; }
-  .success-vg78j0 { color: green; }
+	p {
+		font-size: 18px;
+	}
+	.success-vg78j0 {
+		color: green;
+	}
 </style>
 
 <p class="success-vg78j0">My success messge</p>
@@ -571,29 +656,27 @@ p { font-size: 18px; }
 
 ### Directive and Dynamic class
 
-Use the Svelte's builtin `class:` directive or javascript template to display a class dynamically.  
-**Note**: the *shorthand directive* is **NOT working** with imported CSS Module identifiers.
+Use the Svelte's builtin `class:` directive or javascript template to display a class dynamically.
+**Note**: the _shorthand directive_ is **NOT working** with imported CSS Module identifiers.
 
 ```html
 <script>
-  import { success, error } from './style.module.css';
+	import { success, error } from './style.module.css';
 
-  let isSuccess = true;
-  $: notice = isSuccess ? success : error;
+	let isSuccess = true;
+	$: notice = isSuccess ? success : error;
 </script>
 
-<button on:click={() => isSuccess = !isSuccess}>Toggle</button>
+<button on:click="{()" ="">isSuccess = !isSuccess}>Toggle</button>
 
 <!-- Error -->
 <p class:success>Success</p>
 
 <!-- Ok -->
-<p 
-  class:success={isSuccess}
-  class:error={!isSuccess}>Notice</p>
+<p class:success="{isSuccess}" class:error="{!isSuccess}">Notice</p>
 
-<p class={notice}>Notice</p>
-<p class={isSuccess ? success : error}>Notice</p>
+<p class="{notice}">Notice</p>
+<p class="{isSuccess" ? success : error}>Notice</p>
 ```
 
 ## Preprocessor Modes
@@ -622,8 +705,12 @@ Scopes non-class selectors with svelte scoping in addition to `native` (same as 
 
 ```html
 <style module="mixed">
-  p { font-size: 14px; }
-  .red { color: red; }
+	p {
+		font-size: 14px;
+	}
+	.red {
+		color: red;
+	}
 </style>
 
 <p class="red">My red text</p>
@@ -633,8 +720,12 @@ _generating_
 
 ```html
 <style>
-  p.svelte-teyu13r { font-size: 14px; }
-  .red-30_1IC { color: red; }
+	p.svelte-teyu13r {
+		font-size: 14px;
+	}
+	.red-30_1IC {
+		color: red;
+	}
 </style>
 
 <p class="red-30_1IC svelte-teyu13r">My red text</p>
@@ -652,38 +743,38 @@ Cons:
 
 ```html
 <ul>
- <li>Home</li>
- <li class="active">About</li>
+	<li>Home</li>
+	<li class="active">About</li>
 </ul>
 
 <style module="mixed">
- li {
-   color: gray; 
- }
- /* this will never be applied */
- .active {
-   color: blue;
- }
- /* forcing us to write that instead */
- li.active {
-   color: blue;
- }
+	li {
+		color: gray;
+	}
+	/* this will never be applied */
+	.active {
+		color: blue;
+	}
+	/* forcing us to write that instead */
+	li.active {
+		color: blue;
+	}
 </style>
 
 <!-- or rewriting the component -->
 
 <ul>
- <li class="item">Home</li>
- <li class="item active">About</li>
+	<li class="item">Home</li>
+	<li class="item active">About</li>
 </ul>
 
 <style module="mixed">
- .item {
-   color: gray; 
- }
- .active {
-   color: blue;
- }
+	.item {
+		color: gray;
+	}
+	.active {
+		color: blue;
+	}
 </style>
 ```
 
@@ -693,8 +784,12 @@ Scopes classes with svelte scoping in addition to `mixed`.
 
 ```html
 <style module="scoped">
-  p { font-size: 14px; }
-  .red { color: red; }
+	p {
+		font-size: 14px;
+	}
+	.red {
+		color: red;
+	}
 </style>
 
 <p class="red">My red text</p>
@@ -704,8 +799,12 @@ _generating_
 
 ```html
 <style>
-  p.svelte-teyu13r { font-size: 14px; }
-  .red-30_1IC.svelte-teyu13r { color: red; }
+	p.svelte-teyu13r {
+		font-size: 14px;
+	}
+	.red-30_1IC.svelte-teyu13r {
+		color: red;
+	}
 </style>
 
 <p class="red-30_1IC svelte-teyu13r">My red text</p>
@@ -722,13 +821,13 @@ Cons:
 
 ### Comparative
 
-| | Svelte scoping | Preprocessor Native | Preprocessor Mixed | Preprocessor Scoped |
-| -------------| ------------- | ------------- | ------------- | ------------- |
-| Scopes classes  | O | O | O | O |
-| Scopes non class selectors | O | X | O | O |
-| Creates unique class ID | X | O | O | O |
-| Has equal selector weight | O | O | X | O |
-| Passes scoped classname to a child component | X | O | O | X |
+|                                              | Svelte scoping | Preprocessor Native | Preprocessor Mixed | Preprocessor Scoped |
+| -------------------------------------------- | -------------- | ------------------- | ------------------ | ------------------- |
+| Scopes classes                               | O              | O                   | O                  | O                   |
+| Scopes non class selectors                   | O              | X                   | O                  | O                   |
+| Creates unique class ID                      | X              | O                   | O                  | O                   |
+| Has equal selector weight                    | O              | O                   | X                  | O                   |
+| Passes scoped classname to a child component | X              | O                   | O                  | X                   |
 
 ## Why CSS Modules over Svelte scoping?
 
@@ -761,8 +860,8 @@ export default {
 
 ### SvelteKit
 
-As the module distribution is targetting `esnext`, `Node.js 14` or above is required 
-in order to work. 
+As the module distribution is targetting `esnext`, `Node.js 14` or above is required
+in order to work.
 
 ```js
 // svelte.config.js
@@ -781,9 +880,9 @@ export default config;
 
 ### Svelte Preprocess
 
-Svelte is running the preprocessors by phases, going through all *markup* first, followed by *script* and then *style*.
+Svelte is running the preprocessors by phases, going through all _markup_ first, followed by _script_ and then _style_.
 
-The CSS Modules preprocessor is doing all its work on the markup phase via `svelte.parse()` which requires the compoment to be a valid standard svelte component (using vanilla js and vanilla css). if any other code (such as typescript or sass) is encountered, an error will be thrown. 
+The CSS Modules preprocessor is doing all its work on the markup phase via `svelte.parse()` which requires the compoment to be a valid standard svelte component (using vanilla js and vanilla css). if any other code (such as typescript or sass) is encountered, an error will be thrown.
 
 ```js
 import { typescript, scss } from 'svelte-preprocess';
@@ -816,20 +915,21 @@ import { cssModules, linearPreprocess } from 'svelte-preprocess-cssmodules';
 ```
 
 ### Options
+
 Pass an object of the following properties
 
-| Name | Type | Default | Description |
-| ------------- | ------------- | ------------- | ------------- |
-| `cssVariableHash` | `{String}` | `[hash:base64:6]`  | The hash type ([see locatonIdentName](#localidentname)) |
-| [`getLocalIdent`](#getlocalident) | `Function` | `undefined`  | Generate the classname by specifying a function instead of using the built-in interpolation |
-| [`hashSeeder`](#hashseeder) | `{Array}` | `['style', 'filepath', 'classname']` | An array of keys to base the hash on |
-| [`includeAttributes`](#includeattributes) | `{Array}` | `[]` | An array of attributes to parse along with `class` |
-| `includePaths` | `{Array}` | `[]` (Any) | An array of paths to be processed |
-| [`localIdentName`](#localidentname) | `{String}` | `"[local]-[hash:base64:6]"` |  A rule using any available token |
-| `mode`  | `native\|mixed\|scoped` | `native` | The preprocess mode to use
-| `parseExternalStylesheet` | `{Boolean}` | `false` | Enable parsing on imported external stylesheet |
-| `parseStyleTag` | `{Boolean}` | `true` | Enable parsing on style tag |
-| [`useAsDefaultScoping`](#useasdefaultscoping) | `{Boolean}` | `false` | Replace svelte scoping globally |
+| Name                                          | Type                    | Default                              | Description                                                                                 |
+| --------------------------------------------- | ----------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------- |
+| `cssVariableHash`                             | `{String}`              | `[hash:base64:6]`                    | The hash type ([see locatonIdentName](#localidentname))                                     |
+| [`getLocalIdent`](#getlocalident)             | `Function`              | `undefined`                          | Generate the classname by specifying a function instead of using the built-in interpolation |
+| [`hashSeeder`](#hashseeder)                   | `{Array}`               | `['style', 'filepath', 'classname']` | An array of keys to base the hash on                                                        |
+| [`includeAttributes`](#includeattributes)     | `{Array}`               | `[]`                                 | An array of attributes to parse along with `class`                                          |
+| `includePaths`                                | `{Array}`               | `[]` (Any)                           | An array of paths to be processed                                                           |
+| [`localIdentName`](#localidentname)           | `{String}`              | `"[local]-[hash:base64:6]"`          | A rule using any available token                                                            |
+| `mode`                                        | `native\|mixed\|scoped` | `native`                             | The preprocess mode to use                                                                  |
+| `parseExternalStylesheet`                     | `{Boolean}`             | `false`                              | Enable parsing on imported external stylesheet                                              |
+| `parseStyleTag`                               | `{Boolean}`             | `true`                               | Enable parsing on style tag                                                                 |
+| [`useAsDefaultScoping`](#useasdefaultscoping) | `{Boolean}`             | `false`                              | Replace svelte scoping globally                                                             |
 
 #### `getLocalIdent`
 
@@ -846,7 +946,7 @@ function getLocalIdent(
     interpolatedName: string, // the built-in generated classname
   },
   className: string, // the classname string
-  content: { 
+  content: {
     markup: string, // the markup content
     style: string,  // the style content
   }
@@ -855,8 +955,7 @@ function getLocalIdent(
 }
 ```
 
-
-*Example of use*
+_Example of use_
 
 ```bash
 # Directory
@@ -866,12 +965,15 @@ SvelteApp
    └─ components
       └─ Button.svelte
 ```
+
 ```html
 <!-- Button.svelte -->
 <button class="red">Ok</button>
 
 <style>
-  .red { background-color: red; }
+	.red {
+		background-color: red;
+	}
 </style>
 ```
 
@@ -897,10 +999,11 @@ Set the source of the hash (when using `[hash]` / `[contenthash]`).
 The list of available keys are:
 
 - `style` the content of the style tag (or the imported stylesheet)
-- `filepath` the path of the component 
+- `filepath` the path of the component
 - `classname` the local classname
 
-*Example of use: creating a common hash per component*
+_Example of use: creating a common hash per component_
+
 ```js
 // Preprocess config
 ...
@@ -911,12 +1014,17 @@ preprocess: [
 ],
 ...
 ```
+
 ```html
 <button class="success">Ok</button>
 <button class="cancel">Cancel</button>
 <style module>
-  .success { background-color: green; }
-  .cancel { background-color: gray; }
+	.success {
+		background-color: green;
+	}
+	.cancel {
+		background-color: gray;
+	}
 </style>
 ```
 
@@ -926,8 +1034,12 @@ _generating_
 <button class="success-yr6RT">Ok</button>
 <button class="cancel-yr6RT">Cancel</button>
 <style>
-  .success-yr6RT { background-color: green; }
-  .cancel-yr6RT { background-color: gray; }
+	.success-yr6RT {
+		background-color: green;
+	}
+	.cancel-yr6RT {
+		background-color: gray;
+	}
 </style>
 ```
 
@@ -945,12 +1057,17 @@ preprocess: [
 ],
 ...
 ```
+
 ```html
 <button class="red" data-color="red">Red</button>
 <button class="red" classname="blue">Red or Blue</button>
 <style module>
-  .red { background-color: red; }
-  .blue { background-color: blue; }
+	.red {
+		background-color: red;
+	}
+	.blue {
+		background-color: blue;
+	}
 </style>
 ```
 
@@ -960,8 +1077,12 @@ _generating_
 <button class="red-yr6RT" data-color="red-yr6RT">Red</button>
 <button class="red-yr6RT" classname="blue-aE4qW">Red or Blue</button>
 <style>
-  .red-yr6RT { background-color: red; }
-  .blue-aE4qW { background-color: blue; }
+	.red-yr6RT {
+		background-color: red;
+	}
+	.blue-aE4qW {
+		background-color: blue;
+	}
 </style>
 ```
 
@@ -974,7 +1095,7 @@ Inspired by [webpack interpolateName](https://github.com/webpack/loader-utils#in
 - `[name]` the basename of the resource
 - `[path]` the path of the resource
 - `[folder]` the folder the resource is in
-- `[contenthash]` or `[hash]` *(they are the same)* the hash of the resource content (by default it's the hex digest of the md5 hash)
+- `[contenthash]` or `[hash]` _(they are the same)_ the hash of the resource content (by default it's the hex digest of the md5 hash)
 - `[<hashType>:contenthash:<digestType>:<length>]` optionally one can configure
   - other hashTypes, i. e. `sha1`, `md5`, `sha256`, `sha512`
   - other digestTypes, i. e. `hex`, `base26`, `base32`, `base36`, `base49`, `base52`, `base58`, `base62`, `base64`
@@ -983,7 +1104,6 @@ Inspired by [webpack interpolateName](https://github.com/webpack/loader-utils#in
 #### `useAsDefaultScoping`
 
 Globally replace the default svelte scoping by the CSS Modules scoping. As a result, the `module` attribute to `<style>` becomes unnecessary.
-
 
 ```js
 // Preprocess config
@@ -999,7 +1119,9 @@ preprocess: [
 ```html
 <h1 class="title">Welcome</h1>
 <style>
-  .title { color: blue }
+	.title {
+		color: blue;
+	}
 </style>
 ```
 
@@ -1008,11 +1130,13 @@ _generating_
 ```html
 <h1 class="title-erYt1">Welcome</h1>
 <style>
-  .title-erYt1 { color: blue }
+	.title-erYt1 {
+		color: blue;
+	}
 </style>
 ```
 
-**Potential issue with third party plugins**   
+**Potential issue with third party plugins**
 
 The preprocessor requires you to add the `module` attribute to `<style>` in order to apply CSS Modules to a component. When enabling `useAsDefaultScoping` the `module` attribute is not required anymore and CSS Modules will apply to all svelte components of your application, including plugins. If a third party component is relying on svelte scoping and non class selectors, its styling will apply globally and may cause unexpected results.
 
@@ -1031,30 +1155,31 @@ preprocess: [
 ```
 
 ## Migrating from v1
+
 If you want to migrate an existing project to `v2` keeping the approach of the 1st version, follow the steps below:
 
 - Set the `mixed` mode from the global settings.
-   ```js
-   // Preprocess config
-   ...
-   preprocess: [
-    cssModules({
-      mode: 'mixed',
-    }),
-   ],
-   ...
-   ```
+  ```js
+  // Preprocess config
+  ...
+  preprocess: [
+   cssModules({
+     mode: 'mixed',
+   }),
+  ],
+  ...
+  ```
 - Remove all `$style.` prefix from the html markup
 - Add the attribute `module` to `<style>` within your components.
-   ```html
-   <style module>
-   ...
-   </style>
-   ```
+  ```html
+  <style module>
+  	...
+  </style>
+  ```
 
 ## Code Example
 
-*Rollup Config*
+_Rollup Config_
 
 ```js
 export default {
@@ -1073,71 +1198,72 @@ export default {
 }
 ```
 
-*Svelte Component*
+_Svelte Component_
 
 ```html
 <style module>
-  .modal {
-    position: fixed;
-  }
-  .wrapper {
-    padding: 0.5rem 1rem;
-  }
-  .body {
-    flex: 1 0 0;
-  }
-  .modal button {
-    background-color: white;
-  }
-  .cancel {
-    background-color: #f2f2f2;
-  }
+	.modal {
+		position: fixed;
+	}
+	.wrapper {
+		padding: 0.5rem 1rem;
+	}
+	.body {
+		flex: 1 0 0;
+	}
+	.modal button {
+		background-color: white;
+	}
+	.cancel {
+		background-color: #f2f2f2;
+	}
 </style>
 
 <section class="modal">
-  <header class="wrapper">My Modal Title</header>
-  <div class="body wrapper">
-    <p>Lorem ipsum dolor sit, amet consectetur.</p>
-  </div>
-  <footer class="wrapper">
-    <button>Ok</button>
-    <button class="cancel">Cancel</button>
-  </footer>
+	<header class="wrapper">My Modal Title</header>
+	<div class="body wrapper">
+		<p>Lorem ipsum dolor sit, amet consectetur.</p>
+	</div>
+	<footer class="wrapper">
+		<button>Ok</button>
+		<button class="cancel">Cancel</button>
+	</footer>
 </section>
 ```
 
-*Final html code generated by svelte*
+_Final html code generated by svelte_
 
 ```html
 <style>
-  ._329TyLUs9c {
-    position: fixed;
-  }
-  .Re123xDTGv {
-    padding: 0.5rem 1rem;
-  }
-  ._1HPUBXtzNG {
-    flex: 1 0 0;
-  }
-  ._329TyLUs9c button {
-    background-color: white;
-  }
-  ._1xhJxRwWs7 {
-    background-color: #f2f2f2;
-  }
+	._329TyLUs9c {
+		position: fixed;
+	}
+	.Re123xDTGv {
+		padding: 0.5rem 1rem;
+	}
+	._1HPUBXtzNG {
+		flex: 1 0 0;
+	}
+	._329TyLUs9c button {
+		background-color: white;
+	}
+	._1xhJxRwWs7 {
+		background-color: #f2f2f2;
+	}
 </style>
 
 <section class="_329TyLUs9c">
-  <header class="Re123xDTGv">My Modal Title</header>
-  <div class="_1HPUBXtzNG Re123xDTGv">
-    <p>Lorem ipsum dolor sit, amet consectetur.</p>
-  </div>
-  <footer class="Re123xDTGv">
-    <button>Ok</button>
-    <button class="_1xhJxRwWs7">Cancel</button>
-  </footer>
+	<header class="Re123xDTGv">My Modal Title</header>
+	<div class="_1HPUBXtzNG Re123xDTGv">
+		<p>Lorem ipsum dolor sit, amet consectetur.</p>
+	</div>
+	<footer class="Re123xDTGv">
+		<button>Ok</button>
+		<button class="_1xhJxRwWs7">Cancel</button>
+	</footer>
 </section>
 ```
+
 ## License
 
 [MIT](https://opensource.org/licenses/MIT)
