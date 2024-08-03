@@ -1,32 +1,32 @@
 {
-	"compilerOptions": {
-		"lib": [
-			"esnext"
-		],
-		"baseUrl": ".",
-		"moduleResolution": "node",
-		"resolveJsonModule": true,
-		"typeRoots": [
-			"./src/types",
-			"./node_modules/@types"
-		],
-		"types": [
-			"node"
-		],
-		"allowJs": true,
-		"strict": true,
-		"noImplicitAny": true,
-		"removeComments": true,
-		"sourceMap": false,
-		"allowSyntheticDefaultImports": true,
-		"esModuleInterop": true
-	},
-	"include": [
-		"src/**/*.ts"
-	],
-	"exclude": [
-		"node_modules",
-		"dist",
-		"tasks"
-	]
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "noImplicitAny": true,
+    "moduleResolution": "node",
+    "removeComments": true,
+    "sourceMap": false,
+    "strict": true,
+    "baseUrl": ".",
+    "resolveJsonModule": true,
+    "lib": [
+      "esnext"
+    ],
+    "typeRoots": [
+      "./src/types",
+      "./node_modules/@types",
+    ],
+    "types": [
+      "node"
+    ],
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "tasks"
+  ]
 }

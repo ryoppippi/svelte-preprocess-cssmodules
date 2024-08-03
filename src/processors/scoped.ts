@@ -7,30 +7,35 @@ import Processor from './processor';
  * The scoped style parser
  * @param processor The CSS Module Processor
  */
-function parser(processor: Processor): void {
-	const ast = processor.ast as unknown as TemplateNode;
-	walk(ast, {
-		enter(baseNode) {
-			const node = baseNode as TemplateNode;
-			if (node.type === 'Script' || node.type === 'Fragment') {
-				this.skip();
-			}
+const parser = (processor: Processor): void => {
+  const ast = processor.ast as unknown as TemplateNode;
+  walk(ast, {
+    enter(baseNode) {
+      const node = baseNode as TemplateNode;
+      if (node.type === 'Script' || node.type === 'Fragment') {
+        this.skip();
+      }
 
-			processor.parseBoundVariables(node);
+      processor.parseBoundVariables(node);
 
-			if (node.type === 'ClassSelector') {
-				const generatedClassName = processor.createModuleClassname(node.name);
-				processor.addModule(node.name, generatedClassName);
-				processor.magicContent.overwrite(node.start, node.end, `.${generatedClassName}`);
-			}
-		},
-	});
-}
+      if (node.type === 'ClassSelector') {
+        const generatedClassName = processor.createModuleClassname(node.name);
+        processor.addModule(node.name, generatedClassName);
+        processor.magicContent.overwrite(node.start, node.end, `.${generatedClassName}`);
+      }
+    },
+  });
+};
 
-async function scopedProcessor(ast: Ast, content: string, filename: string, options: PluginOptions): Promise<string> {
-	const processor = new Processor(ast, content, filename, options, parser);
-	const processedContent = processor.parse();
-	return processedContent;
-}
+const scopedProcessor = async (
+  ast: Ast,
+  content: string,
+  filename: string,
+  options: PluginOptions
+): Promise<string> => {
+  const processor = new Processor(ast, content, filename, options, parser);
+  const processedContent = processor.parse();
+  return processedContent;
+};
 
 export default scopedProcessor;
