@@ -1,73 +1,71 @@
 {
-  "name": "svelte-preprocess-cssmodules",
-  "version": "2.2.4",
-  "description": "Svelte preprocessor to generate CSS Modules classname on Svelte components",
-  "keywords": [
-    "svelte",
-    "svelte-preprocess",
-    "css-modules"
-  ],
-  "homepage": "https://github.com/micantoine/svelte-preprocess-cssmodules",
-  "bugs": {
-    "url": "https://github.com/micantoine/svelte-preprocess-cssmodules/issues"
-  },
-  "author": {
-    "name": "micantoine"
-  },
-  "scripts": {
-    "prebuild": "rm -rf dist/",
-    "build": "npm run build:cjs && npm run build:esm",
-    "build:cjs": "tsc --module commonjs --target es6 --outDir dist --declaration true",
-    "build:esm": "tsc --module esnext --target esnext --outDir dist/esm && node tasks/parser.mjs && rm -rf dist/esm/",
-    "dev": "npm run build:cjs -- -w",
-    "lint": "eslint --ext .ts --fix ./src",
-    "format": "prettier --write --loglevel warn ./{src,test}",
-    "test": "jest",
-    "prepublishOnly": "npm run test && npm run build",
-    "prepare": "git config diff.lockb.textconv bun && git config diff.lockb.binary true"
-  },
-  "license": "MIT",
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
-    }
-  },
-  "directories": {
-    "example": "example"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/micantoine/svelte-preprocess-cssmodules.git"
-  },
-  "dependencies": {
-    "acorn": "^8.5.0",
-    "big.js": "^6.1.1",
-    "estree-walker": "^3.0.0",
-    "magic-string": "^0.25.7"
-  },
-  "devDependencies": {
-    "@types/big.js": "^6.1.2",
-    "@types/estree": "0.0.47",
-    "@typescript-eslint/eslint-plugin": "^4.4.0",
-    "@typescript-eslint/parser": "^4.4.0",
-    "eslint": "^7.10.0",
-    "eslint-config-airbnb-base": "^14.2.0",
-    "eslint-config-prettier": "^6.15.0",
-    "eslint-plugin-import": "^2.22.1",
-    "jest": "^26.0.1",
-    "prettier": "^2.1.2",
-    "svelte": "^3.22.3",
-    "typescript": "^4.0.3"
-  },
-  "peerDependencies": {
-    "svelte": "^3.20.0",
-    "typescript": "^4.0.0"
-  },
-  "files": [
-    "dist/"
-  ]
+	"name": "svelte-preprocess-cssmodules",
+	"type": "module",
+	"version": "2.2.4",
+	"description": "Svelte preprocessor to generate CSS Modules classname on Svelte components",
+	"author": {
+		"name": "micantoine"
+	},
+	"license": "MIT",
+	"homepage": "https://github.com/micantoine/svelte-preprocess-cssmodules",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/micantoine/svelte-preprocess-cssmodules.git"
+	},
+	"bugs": {
+		"url": "https://github.com/micantoine/svelte-preprocess-cssmodules/issues"
+	},
+	"keywords": [
+		"svelte",
+		"svelte-preprocess",
+		"css-modules"
+	],
+	"exports": {
+		".": {
+			"import": "./dist/index.mjs",
+			"require": "./dist/index.js"
+		}
+	},
+	"main": "./dist/index.js",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.ts",
+	"files": [
+		"dist/"
+	],
+	"scripts": {
+		"prebuild": "rm -rf dist/",
+		"build": "npm run build:cjs && npm run build:esm",
+		"build:cjs": "tsc --module commonjs --target es6 --outDir dist --declaration true",
+		"build:esm": "tsc --module esnext --target esnext --outDir dist/esm && node tasks/parser.mjs && rm -rf dist/esm/",
+		"dev": "npm run build:cjs -- -w",
+		"lint": "eslint --cache .",
+		"format": "nr lint --fix",
+		"test": "jest",
+		"prepublishOnly": "npm run test && npm run build",
+		"prepare": "git config diff.lockb.textconv bun && git config diff.lockb.binary true"
+	},
+	"directories": {
+		"example": "example"
+	},
+	"peerDependencies": {
+		"svelte": "^3.20.0",
+		"typescript": "^4.0.0"
+	},
+	"dependencies": {
+		"acorn": "^8.5.0",
+		"big.js": "^6.1.1",
+		"estree-walker": "^3.0.0",
+		"magic-string": "^0.25.7"
+	},
+	"devDependencies": {
+		"@antfu/ni": "^0.22.0",
+		"@ryoppippi/eslint-config": "npm:@jsr/ryoppippi__eslint-config",
+		"@types/big.js": "^6.1.2",
+		"@types/estree": "0.0.47",
+		"eslint": "^9.8.0",
+		"eslint-plugin-format": "^0.1.2",
+		"jest": "^26.0.1",
+		"svelte": "^3.22.3",
+		"typescript": "^4.0.3"
+	}
 }
