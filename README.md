@@ -27,7 +27,6 @@ npm install --save-dev svelte-preprocess-cssmodules
 - [Why CSS Modules over Svelte scoping?](#why-css-modules-over-svelte-scoping)
 - [Configuration](#configuration)
   - [Rollup](#rollup)
-  - [Webpack](#webpack)
   - [SvelteKit](#sveltekit)
   - [Svelte Preprocess](#svelte-preprocess)
   - [Options](#options)
@@ -756,37 +755,6 @@ export default {
       ]
     }),
   ]
-  ...
-}
-```
-
-### Webpack
-
-To be used with the loader [`svelte-loader`](https://github.com/sveltejs/svelte-loader).
-
-```js
-const { cssModules } = require('svelte-preprocess-cssmodules');
-
-module.exports = {
-  ...
-  module: {
-    rules: [
-      {
-        test: /\.svelte$/,
-        exclude: /node_modules/,
-        use: [
-          {
-            loader: 'svelte-loader',
-            options: {
-              preprocess: [
-                cssModules(),
-              ]
-            }
-          }
-        ]
-      }
-    ]
-  }
   ...
 }
 ```
