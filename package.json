@@ -2,6 +2,7 @@
 	"name": "svelte-preprocess-cssmodules",
 	"type": "module",
 	"version": "2.2.4",
+	"packageManager": "pnpm@9.6.0+sha512.38dc6fba8dba35b39340b9700112c2fe1e12f10b17134715a4aa98ccf7bb035e76fd981cf0bb384dfa98f8d6af5481c2bef2f4266a24bfa20c34eb7147ce0b5e",
 	"description": "Svelte preprocessor to generate CSS Modules classname on Svelte components",
 	"author": {
 		"name": "micantoine"
@@ -38,8 +39,7 @@
 		"lint": "eslint --cache .",
 		"format": "nr lint --fix",
 		"test": "jest",
-		"prepublishOnly": "npm run test && npm run build",
-		"prepare": "git config diff.lockb.textconv bun && git config diff.lockb.binary true"
+		"prepublishOnly": "npm run test && npm run build"
 	},
 	"directories": {
 		"example": "example"
@@ -61,6 +61,7 @@
 		"@types/estree": "0.0.47",
 		"eslint": "^9.8.0",
 		"eslint-plugin-format": "^0.1.2",
+		"eslint-plugin-svelte": "^2.43.0",
 		"jest": "^26.0.1",
 		"mkdist": "^1.5.4",
 		"svelte": "^4.2.0",
