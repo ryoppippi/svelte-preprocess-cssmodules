@@ -1,4 +1,4 @@
-const svelte = require('svelte/compiler');
+const svelte = require('estree-walker');
 const cssModules = require('../');
 
 module.exports = async ({ source }, options) => {
