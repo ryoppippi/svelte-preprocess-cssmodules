@@ -33,10 +33,7 @@
 		"dist/"
 	],
 	"scripts": {
-		"prebuild": "rm -rf dist/",
-		"build": "npm run build:cjs && npm run build:esm",
-		"build:cjs": "tsc --module commonjs --target es6 --outDir dist --declaration true",
-		"build:esm": "tsc --module esnext --target esnext --outDir dist/esm && node tasks/parser.mjs && rm -rf dist/esm/",
+		"build": "mkdist -d",
 		"dev": "npm run build:cjs -- -w",
 		"lint": "eslint --cache .",
 		"format": "nr lint --fix",
@@ -65,6 +62,7 @@
 		"eslint": "^9.8.0",
 		"eslint-plugin-format": "^0.1.2",
 		"jest": "^26.0.1",
+		"mkdist": "^1.5.4",
 		"svelte": "^4.2.0",
 		"typescript": "^5.1.6"
 	}
