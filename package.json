@@ -48,14 +48,14 @@
 	},
 	"dependencies": {
 		"acorn": "^8.12.1",
-		"big.js": "^6.1.1",
+		"big.js": "^6.2.1",
 		"estree-walker": "^3.0.3",
 		"magic-string": "^0.25.7"
 	},
 	"devDependencies": {
 		"@antfu/ni": "^0.22.0",
 		"@ryoppippi/eslint-config": "npm:@jsr/ryoppippi__eslint-config",
-		"@types/big.js": "^6.1.2",
+		"@types/big.js": "^6.2.2",
 		"@types/estree": "0.0.52",
 		"eslint": "^9.8.0",
 		"eslint-plugin-format": "^0.1.2",
