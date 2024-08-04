@@ -1,4 +1,5 @@
-const compiler = require('../compiler.js');
+import { describe, expect, it } from 'vitest';
+import { compiler } from '../compiler.ts';
 
 describe('native Mode', () => {
 	it('generate CSS Modules and globalize all selectors', async () => {
@@ -22,8 +23,9 @@ describe('native Mode', () => {
 
 		const output = await compiler({
 			source,
-		}, {
-			localIdentName: '[local]-123',
+			preprocessOptions: {
+				localIdentName: '[local]-123',
+			},
 		});
 
 		expect(output).toBe(expectedOutput);
@@ -50,8 +52,9 @@ describe('native Mode', () => {
 
 		const output = await compiler({
 			source,
-		}, {
-			localIdentName: '[local]-123',
+			preprocessOptions: {
+				localIdentName: '[local]-123',
+			},
 		});
 
 		expect(output).toBe(expectedOutput);
@@ -80,9 +83,10 @@ describe('native Mode', () => {
 
 		const output = await compiler({
 			source,
-		}, {
-			mode: 'native',
-			localIdentName: '[local]-123',
+			preprocessOptions: {
+				mode: 'native',
+				localIdentName: '[local]-123',
+			},
 		});
 
 		expect(output).toBe(expectedOutput);

@@ -1,4 +1,5 @@
-const compiler = require('../compiler.js');
+import { describe, expect, it } from 'vitest';
+import { load as compiler } from '../compiler.ts';
 
 describe('native Mode Imports', () => {
 	it('imports into existing <style>', async () => {
@@ -26,10 +27,11 @@ describe('native Mode Imports', () => {
 
 		const output = await compiler({
 			source,
-		}, {
-			mode: 'native',
-			localIdentName: '[local]-123',
-			parseExternalStylesheet: true,
+			preprocessOptions: {
+				mode: 'native',
+				localIdentName: '[local]-123',
+				parseExternalStylesheet: true,
+			},
 		});
 
 		expect(output).toBe(expectedOutput);

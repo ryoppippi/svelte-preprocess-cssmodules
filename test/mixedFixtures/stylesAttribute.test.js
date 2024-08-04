@@ -1,4 +1,5 @@
-const compiler = require('../compiler.js');
+import { describe, expect, it } from 'vitest';
+import { compiler } from '../compiler.ts';
 
 describe('mixed Mode', () => {
 	it('chain Selector', async () => {
@@ -13,10 +14,10 @@ describe('mixed Mode', () => {
 		const output = await compiler(
 			{
 				source,
-			},
-			{
-				localIdentName: '[local]-123456',
-				mode: 'mixed',
+				preprocessOptions: {
+					localIdentName: '[local]-123456',
+					mode: 'mixed',
+				},
 			},
 		);
 
@@ -41,10 +42,10 @@ describe('mixed Mode', () => {
 		const output = await compiler(
 			{
 				source,
-			},
-			{
-				localIdentName: '[local]-123',
-				mode: 'mixed',
+				preprocessOptions: {
+					localIdentName: '[local]-123',
+					mode: 'mixed',
+				},
 			},
 		);
 
@@ -71,10 +72,10 @@ describe('mixed Mode', () => {
 		const output = await compiler(
 			{
 				source,
-			},
-			{
-				localIdentName: '[local]-123',
-				mode: 'mixed',
+				preprocessOptions: {
+					localIdentName: '[local]-123',
+					mode: 'mixed',
+				},
 			},
 		);
 
@@ -101,10 +102,10 @@ describe('mixed Mode', () => {
 		const output = await compiler(
 			{
 				source,
-			},
-			{
-				localIdentName: '[local]-123',
-				mode: 'mixed',
+				preprocessOptions: {
+					localIdentName: '[local]-123',
+					mode: 'mixed',
+				},
 			},
 		);
 
@@ -133,10 +134,10 @@ describe('mixed Mode', () => {
 		const output = await compiler(
 			{
 				source,
-			},
-			{
-				localIdentName: '[local]-123',
-				mode: 'mixed',
+				preprocessOptions: {
+					localIdentName: '[local]-123',
+					mode: 'mixed',
+				},
 			},
 		);
 
