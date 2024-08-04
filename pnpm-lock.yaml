@@ -9,7 +9,7 @@ importers:
   .:
     dependencies:
       acorn:
-        specifier: ^8.5.0
+        specifier: ^8.12.1
         version: 8.12.1
       big.js:
         specifier: ^6.1.1
