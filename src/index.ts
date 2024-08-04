@@ -108,7 +108,7 @@ const markup: MarkupPreprocessor = async ({ content, filename }) => {
  * @param options
  * @returns the css modules preprocessors
  */
-function cssModulesPreprocessor(options: Partial<PluginOptions>): PreprocessorGroup {
+function cssModulesPreprocessor(options: Partial<PluginOptions> = {}): PreprocessorGroup {
 	pluginOptions = {
 		...defaultOptions(),
 		...options,
@@ -141,7 +141,6 @@ function linearPreprocessor(preprocessors: PreprocessorGroup[]): PreprocessorGro
 }
 
 // export default cssModulesPreprocessor;
-export default exports = module.exports = cssModulesPreprocessor;
 export const cssModules = cssModulesPreprocessor;
 export const linearPreprocess = linearPreprocessor;
 
