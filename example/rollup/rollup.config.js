@@ -6,7 +6,7 @@ import { terser } from 'rollup-plugin-terser';
 import { scss, typescript as typescriptSvelte } from 'svelte-preprocess';
 import typescript from '@rollup/plugin-typescript';
 import css from 'rollup-plugin-css-only';
-import { cssModules, linearPreprocess } from '../../dist/index';
+import { cssModules, linearPreprocess } from 'svelte-preprocess-cssmodules';
 
 const production = !process.env.ROLLUP_WATCH;
 
