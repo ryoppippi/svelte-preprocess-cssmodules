@@ -9,6 +9,7 @@
 	},
 	"devDependencies": {
 		"@sveltejs/kit": "next",
-		"svelte": "^3.49.0"
+		"svelte": "^3.49.0",
+		"svelte-preprocess-cssmodules": "workspace:*"
 	}
 }

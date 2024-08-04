@@ -1,4 +1,4 @@
-import cssModules from '../../dist/index.mjs';
+import { cssModules } from 'svelte-preprocess-cssmodules';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
