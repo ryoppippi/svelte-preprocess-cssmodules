@@ -1,8 +1,8 @@
 import MagicString from 'magic-string';
 import type { Ast, Style, TemplateNode } from 'svelte/types/compiler/interfaces';
+import { camelCase } from 'scule';
 import type { CSSModuleList, PluginOptions } from '../types';
 import {
-	camelCase,
 	createClassName,
 	generateName,
 	hasModuleAttribute,
