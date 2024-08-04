@@ -1,4 +1,5 @@
-const compiler = require('../compiler.js');
+import { expect, it } from 'vitest';
+import { compiler } from '../compiler.ts';
 
 it('replace multiline class attribute', async () => {
 	const output = await compiler({
@@ -7,8 +8,9 @@ it('replace multiline class attribute', async () => {
     strong
     main
     ">btn</span>`,
-	}, {
-		localIdentName: '[local]-123',
+		cssPreprocessorOptions: {
+			localIdentName: '[local]-123',
+		},
 	});
 
 	expect(output).toBe(

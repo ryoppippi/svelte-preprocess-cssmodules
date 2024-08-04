@@ -1,4 +1,5 @@
-const compiler = require('../compiler.js');
+import { describe, expect, it } from 'vitest';
+import { compiler } from '../compiler.ts';
 
 describe('scoped Mode Imports', () => {
 	it('do no apply styling', async () => {
@@ -18,9 +19,10 @@ describe('scoped Mode Imports', () => {
 
 		const output = await compiler({
 			source,
-		}, {
-			mode: 'scoped',
-			localIdentName: '[local]-123',
+			cssPreprocessorOptions: {
+				mode: 'scoped',
+				localIdentName: '[local]-123',
+			},
 		});
 
 		expect(output).toBe(expectedOutput);
@@ -46,10 +48,11 @@ describe('scoped Mode Imports', () => {
 
 		const output = await compiler({
 			source,
-		}, {
-			mode: 'scoped',
-			localIdentName: '[local]-123',
-			parseExternalStylesheet: true,
+			cssPreprocessorOptions: {
+				mode: 'scoped',
+				localIdentName: '[local]-123',
+				parseExternalStylesheet: true,
+			},
 		});
 
 		expect(output).toBe(expectedOutput);
@@ -75,10 +78,11 @@ describe('scoped Mode Imports', () => {
 
 		const output = await compiler({
 			source,
-		}, {
-			mode: 'scoped',
-			localIdentName: '[local]-123',
-			parseExternalStylesheet: true,
+			cssPreprocessorOptions: {
+				mode: 'scoped',
+				localIdentName: '[local]-123',
+				parseExternalStylesheet: true,
+			},
 		});
 
 		expect(output).toBe(expectedOutput);
@@ -96,7 +100,7 @@ describe('scoped Mode Imports', () => {
     = `<script>
       const { successMessage } = {"successMessage":"success-message-123"};
     </script>
-    <div class:sucess-message-123={true}>Success</div>
+    <div class:success-message-123={true}>Success</div>
     <div class="error-123">Error</div>`
     	+ `<style module>\n`
     	+ `section { padding:10px }\n`
@@ -105,10 +109,11 @@ describe('scoped Mode Imports', () => {
 
 		const output = await compiler({
 			source,
-		}, {
-			mode: 'scoped',
-			localIdentName: '[local]-123',
-			parseExternalStylesheet: true,
+			cssPreprocessorOptions: {
+				mode: 'scoped',
+				localIdentName: '[local]-123',
+				parseExternalStylesheet: true,
+			},
 		});
 	});
 
@@ -132,10 +137,11 @@ describe('scoped Mode Imports', () => {
 
 		const output = await compiler({
 			source,
-		}, {
-			mode: 'scoped',
-			localIdentName: '[local]-123',
-			parseExternalStylesheet: true,
+			cssPreprocessorOptions: {
+				mode: 'scoped',
+				localIdentName: '[local]-123',
+				parseExternalStylesheet: true,
+			},
 		});
 
 		expect(output).toBe(expectedOutput);
@@ -166,10 +172,11 @@ describe('scoped Mode Imports', () => {
 
 		const output = await compiler({
 			source,
-		}, {
-			mode: 'scoped',
-			localIdentName: '[local]-123',
-			parseExternalStylesheet: true,
+			cssPreprocessorOptions: {
+				mode: 'scoped',
+				localIdentName: '[local]-123',
+				parseExternalStylesheet: true,
+			},
 		});
 
 		expect(output).toBe(expectedOutput);

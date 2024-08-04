@@ -1,4 +1,5 @@
-const compiler = require('../compiler.js');
+import { describe, expect, it } from 'vitest';
+import { compiler } from '../compiler.ts';
 
 const script = '<script>let color = \'blue\';</script>';
 
@@ -6,8 +7,9 @@ describe('bind variable to CSS', () => {
 	it('root elements', async () => {
 		const output = await compiler({
 			source: `${script}<div>blue</div><div>red</div><style module>div{color:bind(color)}</style>`,
-		}, {
-			cssVariableHash: '123',
+			cssPreprocessorOptions: {
+				cssVariableHash: '123',
+			},
 		});
 
 		expect(output).toBe(
@@ -18,9 +20,10 @@ describe('bind variable to CSS', () => {
 	it('root element with attributes', async () => {
 		const output = await compiler({
 			source: `${script}<div class="blue">blue</div><style module>.blue{color:bind(color)}</style>`,
-		}, {
-			cssVariableHash: '123',
-			localIdentName: '[local]-123',
+			cssPreprocessorOptions: {
+				cssVariableHash: '123',
+				localIdentName: '[local]-123',
+			},
 		});
 
 		expect(output).toBe(
@@ -31,8 +34,9 @@ describe('bind variable to CSS', () => {
 	it('root element with style attribute', async () => {
 		const output = await compiler({
 			source: `${script}<div style="display:block">blue</div><style module>div{color:bind(color)}</style>`,
-		}, {
-			cssVariableHash: '123',
+			cssPreprocessorOptions: {
+				cssVariableHash: '123',
+			},
 		});
 
 		expect(output).toBe(
@@ -43,8 +47,9 @@ describe('bind variable to CSS', () => {
 	it('element wrapped by a root component', async () => {
 		const output = await compiler({
 			source: `${script}<Component><div>blue</div></Component><style module>div{color:bind(color)}</style>`,
-		}, {
-			cssVariableHash: '123',
+			cssPreprocessorOptions: {
+				cssVariableHash: '123',
+			},
 		});
 
 		expect(output).toBe(
@@ -66,9 +71,10 @@ describe('bind variable to CSS', () => {
       </Component2>
       <div>yellow <Component1><i>blue</i></Component1></div>
       <style module>div{color:bind('color')}</style>`,
-		}, {
-			cssVariableHash: '123',
-			mode: 'scoped',
+			cssPreprocessorOptions: {
+				cssVariableHash: '123',
+				mode: 'scoped',
+			},
 		});
 
 		expect(output).toBe(
@@ -97,9 +103,10 @@ describe('bind variable to CSS', () => {
           display:bind("style.display");
         }
       </style>`,
-		}, {
-			cssVariableHash: '123',
-			mode: 'scoped',
+			cssPreprocessorOptions: {
+				cssVariableHash: '123',
+				mode: 'scoped',
+			},
 		});
 
 		expect(output).toBe(
@@ -121,8 +128,9 @@ describe('bind variable to CSS', () => {
 			+ `{:else if color === 'red'}<div>red</div>`
 			+ `{:else}<div>none</div>`
 			+ `{/if}<style module>div{color:bind(color)}</style>`,
-		}, {
-			cssVariableHash: '123',
+			cssPreprocessorOptions: {
+				cssVariableHash: '123',
+			},
 		});
 
 		expect(output).toBe(
@@ -140,8 +148,9 @@ describe('bind variable to CSS', () => {
 			+ `{#each [0,1,2,3] as number}`
 			+ `<div>{number}</div>`
 			+ `{/each}<style module>div{color:bind(color)}</style>`,
-		}, {
-			cssVariableHash: '123',
+			persistentOptions: {
+				cssVariableHash: '123',
+			},
 		});
 
 		expect(output).toBe(
@@ -165,8 +174,9 @@ describe('bind variable to CSS', () => {
 			+ `{#await promise then value}`
 			+ `<p>the value is {value}</p>`
 			+ `{/await}<style module>div{color:bind(color)}</style>`,
-		}, {
-			cssVariableHash: '123',
+			cssPreprocessorOptions: {
+				cssVariableHash: '123',
+			},
 		});
 
 		expect(output).toBe(
@@ -190,8 +200,9 @@ describe('bind variable to CSS', () => {
 			+ `{#key value}`
 			+ `<div transition:fade>{value}</div>`
 			+ `{/key}<style module>div{color:bind(color)}</style>`,
-		}, {
-			cssVariableHash: '123',
+			cssPreprocessorOptions: {
+				cssVariableHash: '123',
+			},
 		});
 
 		expect(output).toBe(

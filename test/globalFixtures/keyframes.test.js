@@ -1,4 +1,5 @@
-const compiler = require('../compiler.js');
+import { describe, expect, it } from 'vitest';
+import { compiler } from '../compiler.ts';
 
 describe('scoped Keyframes', () => {
 	it('mixed mode on tag selector', async () => {
@@ -18,9 +19,10 @@ describe('scoped Keyframes', () => {
 
 		const output = await compiler({
 			source,
-		}, {
-			mode: 'mixed',
-			localIdentName: '[local]-123',
+			persistentOptions: {
+				mode: 'mixed',
+				localIdentName: '[local]-123',
+			},
 		});
 
 		expect(output).toBe(expectedOutput);
@@ -45,9 +47,10 @@ describe('scoped Keyframes', () => {
 
 		const output = await compiler({
 			source,
-		}, {
-			mode: 'native',
-			localIdentName: '[local]-123',
+			persistentOptions: {
+				mode: 'native',
+				localIdentName: '[local]-123',
+			},
 		});
 
 		expect(output).toBe(expectedOutput);
@@ -72,9 +75,10 @@ describe('scoped Keyframes', () => {
 
 		const output = await compiler({
 			source,
-		}, {
-			mode: 'native',
-			localIdentName: '[local]-123',
+			cssPreprocessorOptions: {
+				mode: 'native',
+				localIdentName: '[local]-123',
+			},
 		});
 
 		expect(output).toBe(expectedOutput);
