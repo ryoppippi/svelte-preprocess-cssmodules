@@ -23,7 +23,7 @@ describe('native Mode', () => {
 
 		const output = await compiler({
 			source,
-			preprocessOptions: {
+			cssPreprocessorOptions: {
 				localIdentName: '[local]-123',
 			},
 		});
@@ -52,7 +52,7 @@ describe('native Mode', () => {
 
 		const output = await compiler({
 			source,
-			preprocessOptions: {
+			cssPreprocessorOptions: {
 				localIdentName: '[local]-123',
 			},
 		});
@@ -83,7 +83,7 @@ describe('native Mode', () => {
 
 		const output = await compiler({
 			source,
-			preprocessOptions: {
+			cssPreprocessorOptions: {
 				mode: 'native',
 				localIdentName: '[local]-123',
 			},

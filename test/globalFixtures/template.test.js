@@ -8,7 +8,7 @@ it('replace multiline class attribute', async () => {
     strong
     main
     ">btn</span>`,
-		preprocessOptions: {
+		cssPreprocessorOptions: {
 			localIdentName: '[local]-123',
 		},
 	});

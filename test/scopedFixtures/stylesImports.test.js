@@ -19,7 +19,7 @@ describe('scoped Mode Imports', () => {
 
 		const output = await compiler({
 			source,
-			preprocessOptions: {
+			cssPreprocessorOptions: {
 				mode: 'scoped',
 				localIdentName: '[local]-123',
 			},
@@ -48,7 +48,7 @@ describe('scoped Mode Imports', () => {
 
 		const output = await compiler({
 			source,
-			preprocessOptions: {
+			cssPreprocessorOptions: {
 				mode: 'scoped',
 				localIdentName: '[local]-123',
 				parseExternalStylesheet: true,
@@ -78,7 +78,7 @@ describe('scoped Mode Imports', () => {
 
 		const output = await compiler({
 			source,
-			preprocessOptions: {
+			cssPreprocessorOptions: {
 				mode: 'scoped',
 				localIdentName: '[local]-123',
 				parseExternalStylesheet: true,
@@ -109,7 +109,7 @@ describe('scoped Mode Imports', () => {
 
 		const output = await compiler({
 			source,
-			preprocessOptions: {
+			cssPreprocessorOptions: {
 				mode: 'scoped',
 				localIdentName: '[local]-123',
 				parseExternalStylesheet: true,
@@ -137,7 +137,7 @@ describe('scoped Mode Imports', () => {
 
 		const output = await compiler({
 			source,
-			preprocessOptions: {
+			cssPreprocessorOptions: {
 				mode: 'scoped',
 				localIdentName: '[local]-123',
 				parseExternalStylesheet: true,
@@ -172,7 +172,7 @@ describe('scoped Mode Imports', () => {
 
 		const output = await compiler({
 			source,
-			preprocessOptions: {
+			cssPreprocessorOptions: {
 				mode: 'scoped',
 				localIdentName: '[local]-123',
 				parseExternalStylesheet: true,

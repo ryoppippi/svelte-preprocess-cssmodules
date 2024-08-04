@@ -7,7 +7,7 @@ describe('scoped Mode', () => {
 	it('generate CSS Modules from HTML attributes, Replace CSS className', async () => {
 		const output = await compiler({
 			source,
-			preprocessOptions: {
+			cssPreprocessorOptions: {
 				localIdentName: '[local]-123',
 			},
 		});
@@ -18,7 +18,7 @@ describe('scoped Mode', () => {
 	it('avoid generated class to start with a non character', async () => {
 		const output = await compiler({
 			source,
-			preprocessOptions: {
+			cssPreprocessorOptions: {
 				localIdentName: '1[local]',
 			},
 		});
@@ -28,7 +28,7 @@ describe('scoped Mode', () => {
 	it('avoid generated class to end with a hyphen', async () => {
 		const output = await compiler({
 			source,
-			preprocessOptions: {
+			cssPreprocessorOptions: {
 				localIdentName: '[local]-',
 			},
 		});
@@ -38,7 +38,7 @@ describe('scoped Mode', () => {
 	it('generate class with path token', async () => {
 		const output = await compiler({
 			source,
-			preprocessOptions: {
+			cssPreprocessorOptions: {
 				localIdentName: '[path][name]__[local]',
 			},
 		});
@@ -48,7 +48,7 @@ describe('scoped Mode', () => {
 	it('replace directive', async () => {
 		const output = await compiler({
 			source: '<style module="scoped">.red { color: red; }</style><span class:red={true}>Red</span>',
-			preprocessOptions: {
+			cssPreprocessorOptions: {
 				localIdentName: '[local]-123',
 			},
 		});
@@ -58,7 +58,7 @@ describe('scoped Mode', () => {
 	it('replace short hand directive', async () => {
 		const output = await compiler({
 			source: '<script>const red = true;</script><style module="scoped">.red { color: red; } .blue { color: blue; }</style><span class:red class:blue={red}>Red</span>',
-			preprocessOptions: {
+			cssPreprocessorOptions: {
 				localIdentName: '[local]-123',
 			},
 		});
@@ -68,7 +68,7 @@ describe('scoped Mode', () => {
 	it('replace multiple classnames on attribute', async () => {
 		const output = await compiler({
 			source: '<style module="scoped">.red { color: red; } .bold { font-weight: bold }</style><span class="red bold">Red</span>',
-			preprocessOptions: {
+			cssPreprocessorOptions: {
 				localIdentName: '[local]-123',
 			},
 		});
@@ -78,7 +78,7 @@ describe('scoped Mode', () => {
 	it('replace classnames on conditional expression', async () => {
 		const output = await compiler({
 			source: `<style module="scoped">.red { color: red; } .bold { font-weight: bold }</style><span class="red {true ? 'bold' : 'red'} bold">Red</span>`,
-			preprocessOptions: {
+			cssPreprocessorOptions: {
 				localIdentName: '[local]-123',
 			},
 		});
@@ -88,7 +88,7 @@ describe('scoped Mode', () => {
 	it('replace classname on component', async () => {
 		const output = await compiler({
 			source: `<script>import Button from './Button.svelte';</script><style module="scoped">.red { color: red; }</style><Button class="red" />`,
-			preprocessOptions: {
+			cssPreprocessorOptions: {
 				localIdentName: '[local]-123',
 			},
 		});
@@ -98,7 +98,7 @@ describe('scoped Mode', () => {
 	it('replace classname listed in <style> only', async () => {
 		const output = await compiler({
 			source: `<style module="scoped">.red { color: red; }</style><span class="red bold">Red</span>`,
-			preprocessOptions: {
+			cssPreprocessorOptions: {
 				localIdentName: '[local]-123',
 			},
 		});
@@ -108,7 +108,7 @@ describe('scoped Mode', () => {
 	it('replace class attribute only', async () => {
 		const output = await compiler({
 			source: `<style module="scoped">.red { color: red; }</style><span class="red" data-color="red">Red</span>`,
-			preprocessOptions: {
+			cssPreprocessorOptions: {
 				localIdentName: '[local]-123',
 			},
 		});
@@ -118,7 +118,7 @@ describe('scoped Mode', () => {
 	it('skip empty class attribute', async () => {
 		const output = await compiler({
 			source: `<style module="scoped">.red { color: red; }</style><span class="">Red</span>`,
-			preprocessOptions: {
+			cssPreprocessorOptions: {
 				localIdentName: '[local]-123',
 			},
 		});
@@ -128,7 +128,7 @@ describe('scoped Mode', () => {
 	it('parse extra attributes as well', async () => {
 		const output = await compiler({
 			source: `<style module="scoped">.red { color: red; }</style><span class="red" data-color="red">Red</span>`,
-			preprocessOptions: {
+			cssPreprocessorOptions: {
 				localIdentName: '[local]-123',
 				includeAttributes: ['data-color'],
 			},
@@ -139,7 +139,7 @@ describe('scoped Mode', () => {
 	it('do not replace the classname', async () => {
 		const output = await compiler({
 			source: `<style>.red { color: red; }</style><span class="red">Red</span>`,
-			preprocessOptions: {
+			cssPreprocessorOptions: {
 				localIdentName: '[local]-123',
 			},
 		});
@@ -149,7 +149,7 @@ describe('scoped Mode', () => {
 	it('do not replace the classname when `parseStyleTag` is off', async () => {
 		const output = await compiler({
 			source: `<style module="scoped">.red { color: red; }</style><span class="red">Red</span>`,
-			preprocessOptions: {
+			cssPreprocessorOptions: {
 				localIdentName: '[local]-123',
 				parseStyleTag: false,
 			},

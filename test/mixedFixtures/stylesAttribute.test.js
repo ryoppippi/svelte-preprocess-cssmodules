@@ -14,7 +14,7 @@ describe('mixed Mode', () => {
 		const output = await compiler(
 			{
 				source,
-				preprocessOptions: {
+				cssPreprocessorOptions: {
 					localIdentName: '[local]-123456',
 					mode: 'mixed',
 				},
@@ -42,7 +42,7 @@ describe('mixed Mode', () => {
 		const output = await compiler(
 			{
 				source,
-				preprocessOptions: {
+				cssPreprocessorOptions: {
 					localIdentName: '[local]-123',
 					mode: 'mixed',
 				},
@@ -72,7 +72,7 @@ describe('mixed Mode', () => {
 		const output = await compiler(
 			{
 				source,
-				preprocessOptions: {
+				cssPreprocessorOptions: {
 					localIdentName: '[local]-123',
 					mode: 'mixed',
 				},
@@ -102,7 +102,7 @@ describe('mixed Mode', () => {
 		const output = await compiler(
 			{
 				source,
-				preprocessOptions: {
+				cssPreprocessorOptions: {
 					localIdentName: '[local]-123',
 					mode: 'mixed',
 				},
@@ -134,7 +134,7 @@ describe('mixed Mode', () => {
 		const output = await compiler(
 			{
 				source,
-				preprocessOptions: {
+				cssPreprocessorOptions: {
 					localIdentName: '[local]-123',
 					mode: 'mixed',
 				},

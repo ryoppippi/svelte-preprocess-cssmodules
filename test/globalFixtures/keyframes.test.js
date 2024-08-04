@@ -75,7 +75,7 @@ describe('scoped Keyframes', () => {
 
 		const output = await compiler({
 			source,
-			preprocessOptions: {
+			cssPreprocessorOptions: {
 				mode: 'native',
 				localIdentName: '[local]-123',
 			},

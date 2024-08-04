@@ -4,7 +4,7 @@ import { compiler } from '../compiler.ts';
 it('customize generated classname from getLocalIdent', async () => {
 	const output = await compiler({
 		source: '<style module="scoped">.red { color: red; }</style><span class="red">Red</span>',
-		preprocessOptions: {
+		cssPreprocessorOptions: {
 			localIdentName: '[local]-123456MC',
 			getLocalIdent: (_, { interpolatedName }) => {
 				return interpolatedName.toLowerCase();
@@ -20,7 +20,7 @@ it('customize generated classname from getLocalIdent', async () => {
 it('do not process style without the module attribute', async () => {
 	const output = await compiler({
 		source: '<style>.red { color: red; }</style><span class="red">Red</span>',
-		preprocessOptions: {
+		cssPreprocessorOptions: {
 			localIdentName: '[local]-123',
 		},
 	});
@@ -36,7 +36,7 @@ describe('when the mode option has an invalid value', () => {
 	it('throws an exception', async () => {
 		await expect(compiler({
 			source,
-			preprocessOptions: {
+			cssPreprocessorOptions: {
 				mode: 'svelte',
 			},
 		})).rejects.toThrow(
@@ -58,7 +58,7 @@ describe('when the module attribute has an invalid value', () => {
 it('use the filepath only as hash seeder', async () => {
 	const output = await compiler({
 		source: '<style module>.red { color: red; } .bold { color: bold; }</style><span class="red bold">Red</span>',
-		preprocessOptions: {
+		cssPreprocessorOptions: {
 			localIdentName: '[local]-[hash:6]',
 			hashSeeder: ['filepath'],
 		},
@@ -75,7 +75,7 @@ describe('when the hashSeeder has a wrong key', () => {
 	it('throws an exception', async () => {
 		await expect(compiler({
 			source,
-			preprocessOptions: {
+			cssPreprocessorOptions: {
 				hashSeeder: ['filepath', 'content'],
 			},
 		})).rejects.toThrow(
@@ -89,7 +89,7 @@ describe('when the preprocessor is set as default scoping', () => {
 		const source = '<style>.red { color: red; }</style><p class="red">red</p>';
 		const output = await compiler({
 			source,
-			preprocessOptions: {
+			cssPreprocessorOptions: {
 				localIdentName: '[local]-123',
 				useAsDefaultScoping: true,
 			},
@@ -102,7 +102,7 @@ describe('when the preprocessor is set as default scoping', () => {
 		const source = '<style module="scoped">.red { color: red; }</style><p class="red">red</p>';
 		const output = await compiler({
 			source,
-			preprocessOptions: {
+			cssPreprocessorOptions: {
 				localIdentName: '[local]-123',
 				useAsDefaultScoping: true,
 			},
@@ -115,7 +115,7 @@ describe('when the preprocessor is set as default scoping', () => {
 		const source = '<style module="scoped">.red { color: red; }</style><p class="red">red</p>';
 		const output = await compiler({
 			source,
-			preprocessOptions: {
+			cssPreprocessorOptions: {
 				localIdentName: '[local]-123',
 				parseStyleTag: false,
 				useAsDefaultScoping: true,
@@ -129,7 +129,7 @@ describe('when the preprocessor is set as default scoping', () => {
 		const source = '<p class="red">red</p>';
 		const output = await compiler({
 			source,
-			preprocessOptions: {
+			cssPreprocessorOptions: {
 				useAsDefaultScoping: true,
 			},
 		});

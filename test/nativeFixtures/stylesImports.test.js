@@ -27,7 +27,7 @@ describe('native Mode Imports', () => {
 
 		const output = await compiler({
 			source,
-			preprocessOptions: {
+			cssPreprocessorOptions: {
 				mode: 'native',
 				localIdentName: '[local]-123',
 				parseExternalStylesheet: true,
