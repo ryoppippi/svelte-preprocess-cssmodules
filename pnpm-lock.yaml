@@ -62,7 +62,7 @@ importers:
         version: 1.0.14
     devDependencies:
       '@rollup/plugin-commonjs':
-        specifier: ^17.0.0
+        specifier: ^17.1.0
         version: 17.1.0(rollup@2.79.1)
       '@rollup/plugin-node-resolve':
         specifier: ^11.2.1
