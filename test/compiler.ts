@@ -7,7 +7,7 @@ type Params = {
 	preprocessOptions: Parameters<typeof preprocess>[2];
 };
 
-export async function load({
+export async function compiler({
 	source,
 	cssOptions,
 	preprocessOptions,
