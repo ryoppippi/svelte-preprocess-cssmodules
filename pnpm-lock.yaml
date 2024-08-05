@@ -54,6 +54,9 @@ importers:
       svelte-eslint-parser:
         specifier: ^0.41.0
         version: 0.41.0(svelte@5.0.0-next.208)
+      svelte-parse-markup:
+        specifier: ^0.1.5
+        version: 0.1.5(svelte@5.0.0-next.208)
       typescript:
         specifier: ^5.1.6
         version: 5.5.4
@@ -2658,6 +2661,11 @@ packages:
     engines: {node: ^12.20 || ^14.13.1 || >= 16}
     peerDependencies:
       svelte: ^3.19.0 || ^4.0.0
+
+  svelte-parse-markup@0.1.5:
+    resolution: {integrity: sha512-T6mqZrySltPCDwfKXWQ6zehipVLk4GWfH1zCMGgRtLlOIFPuw58ZxVYxVvotMJgJaurKi1i14viB2GIRKXeJTQ==}
+    peerDependencies:
+      svelte: ^3.0.0 || ^4.0.0 || ^5.0.0-next.1
 
   svelte-preprocess@5.1.4:
     resolution: {integrity: sha512-IvnbQ6D6Ao3Gg6ftiM5tdbR6aAETwjhHV+UKGf5bHGYR69RQvF1ho0JKPcbUON4vy4R7zom13jPjgdOWCQ5hDA==}
@@ -5720,6 +5728,10 @@ snapshots:
       svelte: 5.0.0-next.208
 
   svelte-hmr@0.16.0(svelte@5.0.0-next.208):
+    dependencies:
+      svelte: 5.0.0-next.208
+
+  svelte-parse-markup@0.1.5(svelte@5.0.0-next.208):
     dependencies:
       svelte: 5.0.0-next.208
 
