@@ -1,5 +1,5 @@
 import path from 'node:path';
-import type { Ast } from 'svelte/types/compiler/interfaces';
+import type { AstLegacy } from 'svelte-eslint-parser/lib/parser/svelte-ast-types';
 
 /**
  * Normalize path by replacing potential backslashes to slashes
@@ -48,7 +48,7 @@ export function hasModuleImports(content: string): boolean {
  * @param ast the component content tree
  * @returns The status
  */
-export function hasModuleAttribute(ast: Ast): boolean {
+export function hasModuleAttribute(ast: AstLegacy): boolean {
 	const moduleAttribute = ast?.css?.attributes.find(item => item.name === 'module');
 	return moduleAttribute !== undefined;
 }

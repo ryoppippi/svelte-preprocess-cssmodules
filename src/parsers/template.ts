@@ -1,5 +1,5 @@
 import { walk } from 'estree-walker';
-import type { Attribute, TemplateNode } from 'svelte/types/compiler/interfaces';
+import type { Attribute, TemplateNode } from 'svelte-eslint-parser/lib/parser/svelte-ast-types';
 import type Processor from '../processors/processor';
 
 type CssVariables = {

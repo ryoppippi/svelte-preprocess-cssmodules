@@ -1,5 +1,5 @@
 import { walk } from 'estree-walker';
-import type { Ast, TemplateNode } from 'svelte/types/compiler/interfaces';
+import type { AstLegacy, TemplateNode } from 'svelte-eslint-parser/lib/parser/svelte-ast-types';
 import type { PluginOptions } from '../types';
 import Processor from './processor';
 
@@ -96,7 +96,7 @@ function parser(processor: Processor): void {
 	});
 }
 
-async function nativeProcessor(ast: Ast, content: string, filename: string, options: PluginOptions): Promise<string> {
+async function nativeProcessor(ast: AstLegacy, content: string, filename: string, options: PluginOptions): Promise<string> {
 	const processor = new Processor(ast, content, filename, options, parser);
 	const processedContent = processor.parse();
 	return processedContent;
