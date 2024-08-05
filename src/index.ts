@@ -1,4 +1,5 @@
-import { parse, preprocess } from 'svelte/compiler';
+import { preprocess } from 'svelte/compiler';
+import { parse } from 'svelte-parse-markup';
 import type { Ast } from 'svelte/types/compiler/interfaces';
 import type { MarkupPreprocessor, PreprocessorGroup } from 'svelte/types/compiler/preprocess';
 import type { PluginOptions } from './types';
