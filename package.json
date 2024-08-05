@@ -50,7 +50,7 @@
 		"acorn": "^8.12.1",
 		"big.js": "^6.2.1",
 		"estree-walker": "^3.0.3",
-		"magic-string": "^0.25.7"
+		"magic-string": "^0.30.11"
 	},
 	"devDependencies": {
 		"@antfu/ni": "^0.22.0",
