@@ -23,9 +23,9 @@
 	],
 	"exports": {
 		".": {
+			"types": "./dist/index.d.ts",
 			"import": "./dist/index.mjs",
-			"require": "./dist/index.js",
-			"types": "./dist/index.d.ts"
+			"require": "./dist/index.js"
 		}
 	},
 	"files": [
@@ -63,7 +63,9 @@
 		"mkdist": "^1.5.4",
 		"scule": "^1.3.0",
 		"svelte": "5.0.0-next.208",
+		"svelte-eslint-parser": "^0.41.0",
 		"typescript": "^5.1.6",
-		"vitest": "^2.0.5"
+		"vitest": "^2.0.5",
+		"zimmerframe": "^1.1.2"
 	}
 }

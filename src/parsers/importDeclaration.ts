@@ -3,7 +3,7 @@ import fs, { constants } from 'node:fs';
 import MagicString from 'magic-string';
 import { parse } from 'svelte/compiler';
 import { walk } from 'estree-walker';
-import type { TemplateNode } from 'svelte/types/compiler/interfaces';
+import type { TemplateNode } from 'svelte-eslint-parser/lib/parser/svelte-ast-types';
 import type Processor from '../processors/processor';
 
 /**
