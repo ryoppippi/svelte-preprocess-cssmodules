@@ -49,8 +49,8 @@
 	"dependencies": {
 		"acorn": "^8.12.1",
 		"big.js": "^6.2.1",
-		"estree-walker": "^3.0.3",
-		"magic-string": "^0.25.7"
+		"magic-string": "^0.25.7",
+		"zimmerframe": "^1.1.2"
 	},
 	"devDependencies": {
 		"@antfu/ni": "^0.22.0",
@@ -66,7 +66,6 @@
 		"svelte-eslint-parser": "^0.41.0",
 		"svelte-parse-markup": "^0.1.5",
 		"typescript": "^5.1.6",
-		"vitest": "^2.0.5",
-		"zimmerframe": "^1.1.2"
+		"vitest": "^2.0.5"
 	}
 }
