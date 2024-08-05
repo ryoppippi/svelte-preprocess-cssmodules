@@ -2,7 +2,7 @@ import path from 'node:path';
 import fs, { constants } from 'node:fs';
 import MagicString from 'magic-string';
 import { parse } from 'svelte-parse-markup';
-import { walk } from 'estree-walker';
+import { walk } from 'zimmerframe';
 import type { TemplateNode } from 'svelte-eslint-parser/lib/parser/svelte-ast-types';
 import type Processor from '../processors/processor';
 

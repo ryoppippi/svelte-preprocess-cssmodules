@@ -1,4 +1,4 @@
-import { walk } from 'estree-walker';
+import { walk } from 'zimmerframe';
 import type { AstLegacy, TemplateNode } from 'svelte-eslint-parser/lib/parser/svelte-ast-types';
 import type { PluginOptions } from '../types';
 import Processor from './processor';
