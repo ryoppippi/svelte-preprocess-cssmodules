@@ -36,6 +36,7 @@
 		"dev": "npm run build:cjs -- -w",
 		"lint": "eslint --cache .",
 		"format": "nr lint --fix",
+		"typecheck": "tsc --noEmit",
 		"test": "vitest",
 		"prepublishOnly": "npm run test && npm run build"
 	},
